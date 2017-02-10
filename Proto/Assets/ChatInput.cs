@@ -21,6 +21,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	public GameObject thisPlayer;
 	public string playerName;
 	public GameObject p;
+	public ExitGames.Client.Photon.Chat.AuthenticationValues authValues;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +29,8 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 		chatCanvas = this.GetComponent<Canvas> ();
 		chatClient = new ChatClient (this,ExitGames.Client.Photon.ConnectionProtocol.Udp);
 		chatClient.ChatRegion = "US";
-		chatClient.Connect ("11d9264f-b5f0-41e7-b6b3-19b3476bcd0c", "0.1", null);
 		chatClient.Subscribe (new string[] {"main"});
+		authValues = new ExitGames.Client.Photon.Chat.AuthenticationValues ();
 	}
 	
 	// Update is called once per frame
@@ -39,6 +40,20 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 			if (p.GetComponent<UserID>().username!=null) {
 				thisPlayer = FindObjectOfType<PlayerInput> ().gameObject;
 				playerName = thisPlayer.GetComponent<UserID> ().username;
+				if (authValues.UserId==null) {
+					authValues.UserId = playerName;
+				}
+				if (authValues.AuthType==null) {
+					authValues.AuthType = ExitGames.Client.Photon.Chat.CustomAuthenticationType.None;
+				}
+				if (chatClient.CanChat==false) {
+					Debug.Log ("Can't chat!");
+					chatClient.Connect ("11d9264f-b5f0-41e7-b6b3-19b3476bcd0c", "0.1", authValues);
+					Debug.Log (chatClient.State);
+				}
+				if (chatClient.CanChat==true) {
+					Debug.Log ("Can chat");
+				}
 			}
 
 		}
@@ -61,10 +76,14 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 			chatMode = false;
 			inputField.Select ();
 		}
-		chatClient.Service ();
+		if (chatClient!=null) {
+			chatClient.Service ();
+		}
 	}
 	public void OnDisconnected(){}
-	public void OnConnected(){}
+	public void OnConnected(){
+		Debug.Log ("connected to chat server");
+	}
 	public void OnChatStateChange(ChatState state){}
 
 	public void OnPrivateMessage(string sender, object message, string channelName){}
@@ -74,7 +93,8 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	public void DebugReturn(DebugLevel level, string message){}
 
 	public void CompileMessages(){
-			temp = temp.ToString () + currentMessage.ToString () + "\n";
+		Debug.Log ("compiling chat messages");	
+		temp = temp.ToString () + currentMessage.ToString () + "\n";
 		historyText.text = temp;
 	}
 
