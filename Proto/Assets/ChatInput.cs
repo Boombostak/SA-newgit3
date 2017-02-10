@@ -18,6 +18,9 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	public string currentMessage;
 	public PhotonView photonView;
 	public ChatClient chatClient;
+	public GameObject thisPlayer;
+	public string playerName;
+	public GameObject p;
 
 	// Use this for initialization
 	void Start () {
@@ -31,22 +34,32 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Chat")) {
+		if (GameObject.FindObjectOfType<PlayerInput>()!=null) {
+			p = GameObject.FindObjectOfType<PlayerInput> ().gameObject;
+			if (p.GetComponent<UserID>().username!=null) {
+				thisPlayer = FindObjectOfType<PlayerInput> ().gameObject;
+				playerName = thisPlayer.GetComponent<UserID> ().username;
+			}
+
+		}
+
+		if (Input.GetButtonUp ("Chat")) {
 			chatCanvas.enabled = !chatCanvas.enabled;
 			chatMode = !chatMode;
 			inputField.Select ();
+			inputField.ActivateInputField ();
 		}
 		if (chatMode == true) {
 			inputField.Select();
 		}
-		if ((Input.GetKeyDown ("return")) && chatCanvas.enabled) {
-			currentMessage = inputField.text;
+		if ((Input.GetKeyUp ("return")) && chatCanvas.enabled) {
+			currentMessage = playerName +": " +inputField.text;
 			chatClient.PublishMessage ("main", currentMessage.ToString ());
 			inputField.text = string.Empty;
-			inputField.Select ();
 			chatHistory.Add (currentMessage);
 			chatCanvas.enabled = false;
 			chatMode = false;
+			inputField.Select ();
 		}
 		chatClient.Service ();
 	}

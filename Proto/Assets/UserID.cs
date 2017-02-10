@@ -25,7 +25,7 @@ public class UserID : MonoBehaviour {
 				username = nameInputField.text;
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
-				Debug.Log ("a player was named " + name.text);
+				//Debug.Log ("a player was named " + name.text);
 			}
 		}
 	}

@@ -21,7 +21,7 @@ public class TextPopUpAndAlignToPlayer : MonoBehaviour {
 			}
 		}
 		playerTrans = clientPlayer.transform;
-			Debug.Log ("playertrans is" + playerTrans.name);
+			//Debug.Log ("playertrans is" + playerTrans.name);
 		this.transform.rotation = playerTrans.rotation;
 	text = this.GetComponent<Text> ();
 	}
