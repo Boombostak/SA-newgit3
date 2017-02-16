@@ -25,11 +25,15 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 
 	// Use this for initialization
 	void Start () {
+		Application.runInBackground = true;
+		authValues = new ExitGames.Client.Photon.Chat.AuthenticationValues ();
 		photonView = this.GetComponent<PhotonView>();
 		chatCanvas = this.GetComponent<Canvas> ();
-		chatClient = new ChatClient (this,ExitGames.Client.Photon.ConnectionProtocol.Udp);
+		chatClient = new ChatClient (this,ExitGames.Client.Photon.ConnectionProtocol.Tcp);
 		chatClient.ChatRegion = "US";
-		chatClient.Subscribe (new string[] {"main"});
+		authValues.UserId = System.DateTime.UtcNow.ToString ();
+		chatClient.Connect ("11d9264f-b5f0-41e7-b6b3-19b3476bcd0c", "0.1", authValues);
+
 		authValues = new ExitGames.Client.Photon.Chat.AuthenticationValues ();
 	}
 	
@@ -47,12 +51,12 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 					authValues.AuthType = ExitGames.Client.Photon.Chat.CustomAuthenticationType.None;
 				}
 				if (chatClient.CanChat==false) {
-					Debug.Log ("Can't chat!");
+					//Debug.Log ("Can't chat!");
 					chatClient.Connect ("11d9264f-b5f0-41e7-b6b3-19b3476bcd0c", "0.1", authValues);
 					Debug.Log (chatClient.State);
 				}
 				if (chatClient.CanChat==true) {
-					Debug.Log ("Can chat");
+					//Debug.Log ("Can chat");
 				}
 			}
 
@@ -69,25 +73,29 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 		}
 		if ((Input.GetKeyUp ("return")) && chatCanvas.enabled) {
 			currentMessage = playerName +": " +inputField.text;
-			chatClient.PublishMessage ("main", currentMessage.ToString ());
 			inputField.text = string.Empty;
 			chatHistory.Add (currentMessage);
 			chatCanvas.enabled = false;
 			chatMode = false;
 			inputField.Select ();
+			chatClient.PublishMessage ("channelA", currentMessage.ToString ());
 		}
 		if (chatClient!=null) {
 			chatClient.Service ();
+			//Debug.Log ("ChatClient in service!");
 		}
 	}
 	public void OnDisconnected(){}
 	public void OnConnected(){
 		Debug.Log ("connected to chat server");
+		chatClient.Subscribe (new string[] {"channelA","channelB"});
 	}
 	public void OnChatStateChange(ChatState state){}
 
 	public void OnPrivateMessage(string sender, object message, string channelName){}
-	public void OnSubscribed(string[] channels, bool[] results){}
+	public void OnSubscribed(string[] channels, bool[] results){
+		Debug.Log ("Subscribed to: " + channels);
+	}
 	public void OnUnsubscribed(string[] channels){}
 	public void OnStatusUpdate(string user, int status, bool gotMessage, object message){}
 	public void DebugReturn(DebugLevel level, string message){}
@@ -99,6 +107,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	}
 
 	public void OnGetMessages(string channelName, string[] senders, object[] messages){
+		Debug.Log ("Got a message!");
 		string msgs = "";
 		for (int i = 0; i < senders.Length; i++) {
 			msgs += senders [i] + "=" + messages [i] + ", ";
@@ -106,4 +115,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 			CompileMessages ();
 		}
 	}
+
+	void OnApplicationQuit(){
+		this.chatClient.Disconnect ();}
 }
