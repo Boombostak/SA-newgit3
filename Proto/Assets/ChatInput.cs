@@ -12,6 +12,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	public bool chatMode = false;
 	public InputField inputField;
 	public Text historyText;
+	public ScrollRect historyScroll;
 	public string temp;
 
 	public List<string> chatHistory = new List<string>();
@@ -101,17 +102,15 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	public void DebugReturn(DebugLevel level, string message){}
 
 	public void CompileMessages(){
-		Debug.Log ("compiling chat messages");	
-		temp = temp.ToString () + currentMessage.ToString () + "\n";
+		Debug.Log ("compiling chat messages");
 		historyText.text = temp;
 	}
 
 	public void OnGetMessages(string channelName, string[] senders, object[] messages){
 		Debug.Log ("Got a message!");
-		string msgs = "";
+		//string msgs = "";
 		for (int i = 0; i < senders.Length; i++) {
-			msgs += senders [i] + "=" + messages [i] + ", ";
-			temp = msgs;
+			temp += "\n" + messages [i] + ", ";
 			CompileMessages ();
 		}
 	}
