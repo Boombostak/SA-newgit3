@@ -66,11 +66,14 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 		if (Input.GetButtonUp ("Chat")) {
 			chatCanvas.enabled = !chatCanvas.enabled;
 			chatMode = !chatMode;
+
+		}
+		if (chatMode == true) {
 			inputField.Select ();
 			inputField.ActivateInputField ();
 		}
-		if (chatMode == true) {
-			inputField.Select();
+		if (chatMode == false) {
+			inputField.text = string.Empty;
 		}
 		if ((Input.GetKeyUp ("return")) && chatCanvas.enabled) {
 			currentMessage = playerName +": " +inputField.text;
@@ -78,7 +81,6 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 			chatHistory.Add (currentMessage);
 			chatCanvas.enabled = false;
 			chatMode = false;
-			inputField.Select ();
 			chatClient.PublishMessage ("channelA", currentMessage.ToString ());
 		}
 		if (chatClient!=null) {
