@@ -35,10 +35,12 @@ public class UserID : MonoBehaviour {
 		if (stream.isWriting)
 		{
 			stream.SendNext(username);
+			stream.SendNext (name.text);
 		}
 		else
 		{
 			username = (string)stream.ReceiveNext();
+			name.text = (string)stream.ReceiveNext ();
 		}
 	}
 }
