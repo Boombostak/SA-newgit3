@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Globalization;
+using System.Threading;
 
 public class TimeControl : MonoBehaviour {
 
@@ -8,6 +11,8 @@ public class TimeControl : MonoBehaviour {
     //public float wheelValue;
     public TOD_Time tod_time;
 	public TOD_Sky tod_sky;
+	public string dt;
+	public CultureInfo canadianEnglish = CultureInfo.CreateSpecificCulture("en-CA");
     //public bool speedingUp;
     //public bool slowingDown;
     
@@ -15,6 +20,7 @@ public class TimeControl : MonoBehaviour {
 	void Start () {
         tod_time = FindObjectOfType<TOD_Time>();
 		tod_sky = FindObjectOfType<TOD_Sky> ();
+		//InvokeRepeating ("SyncTime", 0, 10);
 	}
 	
 	// Update is called once per frame
@@ -46,23 +52,33 @@ public class TimeControl : MonoBehaviour {
             Mathf.Lerp(tod_time.DayLengthInMinutes, tod_time.DayLengthInMinutes * 2, 0.5f);
         }
         */
+		Thread.CurrentThread.CurrentCulture = canadianEnglish;
+		dt = tod_sky.Cycle.DateTime.ToString();
         if (Input.GetKeyDown("q"))
         {
             tod_time.DayLengthInMinutes= tod_time.DayLengthInMinutes * 2;
 			timeMultiplier /= 2;
 			Debug.Log ("One real second equals" +1/static_TimeMultiplier+"game seconds");
+			SyncTime ();
         }
         if (Input.GetKeyDown("e"))
         {
             tod_time.DayLengthInMinutes= tod_time.DayLengthInMinutes / 2;
 			timeMultiplier *= 2;
 			Debug.Log ("One real second equals" +1/static_TimeMultiplier+"game seconds");
+			SyncTime ();
         }
 
 		static_TimeMultiplier = timeMultiplier;
 
         //tod_time.DayLengthInMinutes = Mathf.Clamp(tod_time.DayLengthInMinutes, 0.0001f, 9999f) / timeMultiplier;
     }
+	[PunRPC]
+	public void SyncTime()
+	{
+		Debug.Log("RPC SyncTime SENT");
+		tod_sky.Cycle.DateTime = Convert.ToDateTime (dt);
+	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{

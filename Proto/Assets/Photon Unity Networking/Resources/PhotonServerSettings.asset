@@ -39,4 +39,5 @@ MonoBehaviour:
   - Polo
   - RequestForPickupItems
   - TaggedPlayer
+  - SyncTime
   DisableAutoOpenWizard: 1
