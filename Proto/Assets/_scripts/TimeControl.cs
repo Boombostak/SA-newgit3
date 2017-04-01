@@ -59,26 +59,27 @@ public class TimeControl : MonoBehaviour {
             tod_time.DayLengthInMinutes= tod_time.DayLengthInMinutes * 2;
 			timeMultiplier /= 2;
 			Debug.Log ("One real second equals" +1/static_TimeMultiplier+"game seconds");
-			SyncTime ();
+			//SyncTime ();
         }
         if (Input.GetKeyDown("e"))
         {
             tod_time.DayLengthInMinutes= tod_time.DayLengthInMinutes / 2;
 			timeMultiplier *= 2;
 			Debug.Log ("One real second equals" +1/static_TimeMultiplier+"game seconds");
-			SyncTime ();
+			//SyncTime ();
         }
 
 		static_TimeMultiplier = timeMultiplier;
 
         //tod_time.DayLengthInMinutes = Mathf.Clamp(tod_time.DayLengthInMinutes, 0.0001f, 9999f) / timeMultiplier;
     }
-	[PunRPC]
+
+	/*[PunRPC]
 	public void SyncTime()
 	{
 		Debug.Log("RPC SyncTime SENT");
 		tod_sky.Cycle.DateTime = Convert.ToDateTime (dt);
-	}
+	}*/
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
@@ -88,6 +89,7 @@ public class TimeControl : MonoBehaviour {
 			//stream.SendNext (tod_sky.Cycle);
 			//stream.SendNext (tod_sky.Clouds);
 			stream.SendNext(timeMultiplier);
+			stream.SendNext (dt);
 		}
 		else
 		{
@@ -95,6 +97,8 @@ public class TimeControl : MonoBehaviour {
 			//tod_sky.Cycle = (TOD_CycleParameters)stream.ReceiveNext ();
 			//tod_sky.Clouds = (TOD_CloudParameters)stream.ReceiveNext ();
 			timeMultiplier = (float)stream.ReceiveNext();
+			dt = (string)stream.ReceiveNext ();
+			tod_sky.Cycle.DateTime = Convert.ToDateTime (dt);
 		}
 	}
 
