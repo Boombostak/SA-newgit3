@@ -19,6 +19,7 @@ public class MultiPlayerMover : Photon.MonoBehaviour
             GetComponent<PlayerInput>().enabled = true;
             GetComponent<SmoothMouseLook>().enabled = true;
             GetComponent<CharacterController>().enabled = true;
+			GetComponentInChildren<AudioListener> ().enabled = true;
             foreach (Camera cam in GetComponentsInChildren<Camera>())
                 cam.enabled = true;
         }
