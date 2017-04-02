@@ -52,24 +52,24 @@ public class TimeControl : MonoBehaviour {
             Mathf.Lerp(tod_time.DayLengthInMinutes, tod_time.DayLengthInMinutes * 2, 0.5f);
         }
         */
-		Thread.CurrentThread.CurrentCulture = canadianEnglish;
-		dt = tod_sky.Cycle.DateTime.ToString();
-        if (Input.GetKeyDown("q"))
-        {
-            tod_time.DayLengthInMinutes= tod_time.DayLengthInMinutes * 2;
-			timeMultiplier /= 2;
-			Debug.Log ("One real second equals" +1/static_TimeMultiplier+"game seconds");
-			//SyncTime ();
-        }
-        if (Input.GetKeyDown("e"))
-        {
-            tod_time.DayLengthInMinutes= tod_time.DayLengthInMinutes / 2;
-			timeMultiplier *= 2;
-			Debug.Log ("One real second equals" +1/static_TimeMultiplier+"game seconds");
-			//SyncTime ();
-        }
+		if (PhotonNetwork.isMasterClient) {
+			Thread.CurrentThread.CurrentCulture = canadianEnglish;
+			dt = tod_sky.Cycle.DateTime.ToString ();
+			if (Input.GetKeyDown ("q")) {
+				tod_time.DayLengthInMinutes = tod_time.DayLengthInMinutes * 2;
+				timeMultiplier /= 2;
+				Debug.Log ("One real second equals" + 1 / static_TimeMultiplier + "game seconds");
+				//SyncTime ();
+			}
+			if (Input.GetKeyDown ("e")) {
+				tod_time.DayLengthInMinutes = tod_time.DayLengthInMinutes / 2;
+				timeMultiplier *= 2;
+				Debug.Log ("One real second equals" + 1 / static_TimeMultiplier + "game seconds");
+				//SyncTime ();
+			}
 
-		static_TimeMultiplier = timeMultiplier;
+			static_TimeMultiplier = timeMultiplier;
+		}
 
         //tod_time.DayLengthInMinutes = Mathf.Clamp(tod_time.DayLengthInMinutes, 0.0001f, 9999f) / timeMultiplier;
     }
