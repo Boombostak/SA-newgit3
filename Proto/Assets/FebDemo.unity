@@ -2275,7 +2275,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421582, guid: a7c7a490159863c4385443016cb1bde4, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11481350, guid: a7c7a490159863c4385443016cb1bde4, type: 2}
       propertyPath: viewIdField
@@ -3940,7 +3940,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e2694cec1a8b47f40914f4c4f52fe10e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: e2694cec1a8b47f40914f4c4f52fe10e, type: 3}
       propertyPath: m_Name

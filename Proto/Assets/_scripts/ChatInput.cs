@@ -42,7 +42,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	void Update () {
 		if (GameObject.FindObjectOfType<PlayerInput>()!=null) {
 			p = GameObject.FindObjectOfType<PlayerInput> ().gameObject;
-			if (p.GetComponent<UserID>().username!=null) {
+			if (p.GetComponent<UserID>().username!=null && photonView.isMine) {
 				thisPlayer = FindObjectOfType<PlayerInput> ().gameObject;
 				playerName = thisPlayer.GetComponent<UserID> ().username;
 				if (authValues.UserId==null) {
