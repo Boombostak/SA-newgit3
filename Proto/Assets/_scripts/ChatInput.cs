@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Photon;
@@ -21,7 +22,8 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	public ChatClient chatClient;
 	public GameObject thisPlayer;
 	public string playerName;
-	public GameObject p;
+	public List<GameObject> players;
+	public List<PlayerInput> playerInputs;
 	public ExitGames.Client.Photon.Chat.AuthenticationValues authValues;
 
 	// Use this for initialization
@@ -40,28 +42,31 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameObject.FindObjectOfType<PlayerInput>()!=null) {
-			p = GameObject.FindObjectOfType<PlayerInput> ().gameObject;
-			if (p.GetComponent<UserID>().username!=null && photonView.isMine) {
-				thisPlayer = FindObjectOfType<PlayerInput> ().gameObject;
-				playerName = thisPlayer.GetComponent<UserID> ().username;
-				if (authValues.UserId==null) {
-					authValues.UserId = playerName;
-				}
-				if (authValues.AuthType==null) {
-					authValues.AuthType = ExitGames.Client.Photon.Chat.CustomAuthenticationType.None;
-				}
-				if (chatClient.CanChat==false) {
-					//Debug.Log ("Can't chat!");
-					chatClient.Connect ("11d9264f-b5f0-41e7-b6b3-19b3476bcd0c", "0.1", authValues);
-					Debug.Log (chatClient.State);
-				}
-				if (chatClient.CanChat==true) {
-					//Debug.Log ("Can chat");
-				}
+		if (GameObject.FindObjectOfType<PlayerInput> () != null) {
+			playerInputs = new List<PlayerInput>(GameObject.FindObjectsOfType<PlayerInput> ());
+			players = new List<GameObject> ();
+			foreach (var pi in playerInputs) {
+				players.Add (pi.gameObject);
 			}
 
+
+			if (authValues.UserId == null) {
+				authValues.UserId = playerName;
+			}
+			if (authValues.AuthType == null) {
+				authValues.AuthType = ExitGames.Client.Photon.Chat.CustomAuthenticationType.None;
+			}
+			if (chatClient.CanChat == false) {
+				//Debug.Log ("Can't chat!");
+				chatClient.Connect ("11d9264f-b5f0-41e7-b6b3-19b3476bcd0c", "0.1", authValues);
+				Debug.Log (chatClient.State);
+			}
+			if (chatClient.CanChat == true) {
+				//Debug.Log ("Can chat");
+			}
 		}
+	
+			
 
 		if (Input.GetButtonUp ("Chat")) {
 			chatCanvas.enabled = !chatCanvas.enabled;
@@ -76,6 +81,12 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 			inputField.text = string.Empty;
 		}
 		if ((Input.GetKeyUp ("return")) && chatCanvas.enabled) {
+			foreach (var p in players) {
+				if (p.GetPhotonView().isMine) {
+					thisPlayer = p;
+					playerName = thisPlayer.GetComponent<UserID> ().username;
+				}
+			}
 			currentMessage = playerName +": " +inputField.text;
 			inputField.text = string.Empty;
 			chatHistory.Add (currentMessage);
@@ -87,7 +98,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 			chatClient.Service ();
 			//Debug.Log ("ChatClient in service!");
 		}
-	}
+		}
 	public void OnDisconnected(){}
 	public void OnConnected(){
 		Debug.Log ("connected to chat server");

@@ -26,6 +26,7 @@ public class UserID : MonoBehaviour {
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
 				//Debug.Log ("a player was named " + name.text);
+				this.gameObject.name = "player_"+username;
 			}
 		}
 	}

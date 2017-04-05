@@ -7186,7 +7186,8 @@ MonoBehaviour:
   photonView: {fileID: 1269333834}
   thisPlayer: {fileID: 0}
   playerName: 
-  p: {fileID: 0}
+  players: []
+  playerInputs: []
 --- !u!114 &1269333830
 MonoBehaviour:
   m_ObjectHideFlags: 0
