@@ -15,9 +15,12 @@ public class TextPopUpAndAlignToPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		for (int i = 0; i < FindObjectsOfType<PlayerInput>().Length; i++) {
-			if (GameObject.FindObjectsOfType<PlayerInput> ()[i].GetComponent<PhotonView> ().isMine) {
-				clientPlayer = GameObject.FindObjectsOfType<PlayerInput> () [i].gameObject;
+		if (clientPlayer == null) {
+
+			for (int i = 0; i < FindObjectsOfType<PlayerInput>().Length; i++) {
+				if (GameObject.FindObjectsOfType<PlayerInput> ()[i].GetComponent<PhotonView> ().isMine) {
+					clientPlayer = GameObject.FindObjectsOfType<PlayerInput> () [i].gameObject;
+				}
 			}
 		}
 		playerTrans = clientPlayer.transform;
