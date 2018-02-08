@@ -14,6 +14,14 @@ public class NetworkManager : MonoBehaviour {
     public static int numberOfPlayers;
 	public float connectionCountDown;
 
+	public struct room
+	{
+		public string name;
+		public int maxPlayers;
+		public int currentPlayers;
+		public float pingPongTime;
+	}
+
     // Use this for initialization
     void Start()
     {
@@ -22,12 +30,22 @@ public class NetworkManager : MonoBehaviour {
         connectionText = canvas.GetComponentInChildren<Text>();
     }
 
-	void OnJoinedLobby()
+	void OnJoinedLobby() //add lobby system here.
     {
+		InstantiateLobbyUI ();
+		RefreshRooms ();
         RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 }; 
         PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
         Debug.Log("joined room");
     }
+
+	public void InstantiateLobbyUI(){
+		
+	}
+
+	public void RefreshRooms(){
+		
+	}
 
     void OnPhotonRandomJoinFailed()
     {

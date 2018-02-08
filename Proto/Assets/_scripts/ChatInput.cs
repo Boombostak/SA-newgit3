@@ -80,7 +80,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 		if (chatMode == false) {
 			inputField.text = string.Empty;
 		}
-		if ((Input.GetKeyUp ("return")) && chatCanvas.enabled) {
+		if ((Input.GetKeyUp ("return")) && chatCanvas.enabled && inputField.text!=string.Empty) {
 			foreach (var p in players) {
 				if (p.GetPhotonView().isMine) {
 					thisPlayer = p;
@@ -123,7 +123,7 @@ public class ChatInput : UnityEngine.MonoBehaviour, IChatClientListener {
 		Debug.Log ("Got a message!");
 		//string msgs = "";
 		for (int i = 0; i < senders.Length; i++) {
-			temp += "\n" + messages [i] + ", ";
+			temp += "\n" + messages [i] /*+ ", "*/;
 			CompileMessages ();
 		}
 	}
