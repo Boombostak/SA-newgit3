@@ -3094,7 +3094,7 @@ RectTransform:
   m_Children:
   - {fileID: 153784481}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4803,7 +4803,7 @@ Transform:
   - {fileID: 379784267}
   - {fileID: 191925754}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
 --- !u!1 &868326680 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: e2694cec1a8b47f40914f4c4f52fe10e, type: 3}
@@ -4952,18 +4952,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1927239429}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -10529,6 +10518,7 @@ GameObject:
   - 224: {fileID: 1927239430}
   - 223: {fileID: 1927239429}
   - 114: {fileID: 1927239431}
+  - 225: {fileID: 1927239432}
   m_Layer: 0
   m_Name: NameEntryUI
   m_TagString: Untagged
@@ -10568,7 +10558,7 @@ RectTransform:
   - {fileID: 877309704}
   - {fileID: 310769880}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 28
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -10585,7 +10575,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95454fb74d0de5e4bb184bffd252b566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
+  inputField: {fileID: 877309705}
+  canvas: {fileID: 1927239429}
+--- !u!225 &1927239432
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927239428}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 1
 --- !u!1 &1936890102 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 101510, guid: 01c446cab6a9e634b9c5e175c28869be, type: 2}
@@ -10691,7 +10693,7 @@ RectTransform:
   - {fileID: 2099984225}
   - {fileID: 798087168}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 12.8, y: 5.41}
