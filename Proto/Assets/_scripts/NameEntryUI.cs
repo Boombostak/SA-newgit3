@@ -15,11 +15,14 @@ public class NameEntryUI : MonoBehaviour {
 	}
 
 	void Update(){
-		if (inputField.isFocused == false) {
+		if (inputField.isFocused == false && canvas.enabled) {
 			inputField.Select ();
 		}
 		if (Input.GetKeyDown ("return")) {
 			canvas.enabled = false;
+		}
+		if (canvas.enabled==false) {
+			inputField.DeactivateInputField ();
 		}
 	}
 }
