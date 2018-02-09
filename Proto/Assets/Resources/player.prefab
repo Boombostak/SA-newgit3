@@ -53,6 +53,7 @@ GameObject:
   - 114: {fileID: 11491886}
   - 54: {fileID: 5417670}
   - 114: {fileID: 11469434}
+  - 114: {fileID: 11423296}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -173,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 200.27715, y: 63.99164, z: 37.530975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467716}
@@ -347,7 +348,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d61d30be8b16a8248b83353c8db2c9a5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -435,6 +436,21 @@ MonoBehaviour:
   DomePosOffset: {x: 0, y: 0, z: 0}
   DomeScaleToFarClip: 1
   DomeScaleFactor: 0.95
+--- !u!114 &11423296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf6e09101f854f4897830abdb976252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 2367448}
+  source: {fileID: 8265268}
+  isPlaying: 0
+  samples: []
 --- !u!114 &11423956
 MonoBehaviour:
   m_ObjectHideFlags: 1
