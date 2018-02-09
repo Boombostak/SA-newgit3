@@ -34,10 +34,15 @@ public class NetworkManager : MonoBehaviour {
     {
 		InstantiateLobbyUI ();
 		RefreshRooms ();
-        RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 }; 
+		CreateRoom ();
+		RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 };
         PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
         Debug.Log("joined room");
     }
+
+	public void CreateRoom(){
+		 
+	}
 
 	public void InstantiateLobbyUI(){
 		
