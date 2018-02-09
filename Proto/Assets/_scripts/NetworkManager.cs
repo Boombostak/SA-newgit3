@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using ExitGames;
 
 public class NetworkManager : MonoBehaviour {
 
@@ -13,14 +15,18 @@ public class NetworkManager : MonoBehaviour {
     public int playerCount;
     public static int numberOfPlayers;
 	public float connectionCountDown;
+	public string roomInfotest;
+	public List<string> rooms = new List<string>();
+	public List<GameObject> roomsGOs;
+	public GameObject go;
 
-	public struct room
+	/*public struct room
 	{
 		public string name;
 		public int maxPlayers;
 		public int currentPlayers;
 		public float pingPongTime;
-	}
+	}*/
 
     // Use this for initialization
     void Start()
@@ -36,7 +42,7 @@ public class NetworkManager : MonoBehaviour {
 		RefreshRooms ();
 		CreateRoom ();
 		RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 };
-        PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
+        //PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
         Debug.Log("joined room");
     }
 
@@ -49,7 +55,23 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	public void RefreshRooms(){
-		
+		if (PhotonNetwork.insideLobby==true) {
+			Debug.Log ("you are in the lobby");
+		}
+		Debug.Log ("refreshing room list");
+		rooms = new List<string>();
+		roomsGOs = new List<GameObject> ();
+		foreach (RoomInfo room in PhotonNetwork.GetRoomList()) {
+			rooms.Add (room.ToStringFull());
+		}
+			for (int i = 0; i < rooms.Count; i++) {
+			go = new GameObject();
+			go.name = rooms [i];
+			roomsGOs.Add (go);
+		}
+		foreach (RoomInfo room in PhotonNetwork.GetRoomList()){
+			Debug.Log(room.name);
+		}
 	}
 
     void OnPhotonRandomJoinFailed()
