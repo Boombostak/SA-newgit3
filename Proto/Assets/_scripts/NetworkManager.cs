@@ -72,6 +72,7 @@ public class NetworkManager : MonoBehaviour {
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList()){
 			Debug.Log(room.name);
 		}
+		Debug.Log ("Number fo rooms:"+PhotonNetwork.GetRoomList ().Length);
 	}
 
     void OnPhotonRandomJoinFailed()
