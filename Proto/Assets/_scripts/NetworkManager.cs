@@ -20,6 +20,9 @@ public class NetworkManager : MonoBehaviour {
 	public List<GameObject> roomsGOs;
 	public GameObject go;
 
+	public string roomNameText;
+	public InputField roomNameInputField;
+	public bool roomNameInputIsFocused;
 	/*public struct room
 	{
 		public string name;
@@ -40,18 +43,25 @@ public class NetworkManager : MonoBehaviour {
     {
 		InstantiateLobbyUI ();
 		RefreshRooms ();
-		CreateRoom ();
+		//CreateRoom ();
 		RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 };
         //PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
         Debug.Log("joined room");
     }
 
 	public void CreateRoom(){
-		 
+			roomNameText = roomNameInputField.text;
+			Debug.Log ("attempted to create room");
+			PhotonNetwork.CreateRoom (roomNameText);
 	}
 
 	public void InstantiateLobbyUI(){
-		
+		Debug.Log ("attempted to instatiate lobby");
+	}
+
+	public void JoinRoom(){
+		Debug.Log ("attempted to join room");
+		PhotonNetwork.JoinRoom (null);
 	}
 
 	public void RefreshRooms(){
