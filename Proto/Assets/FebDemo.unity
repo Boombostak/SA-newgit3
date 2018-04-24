@@ -1918,8 +1918,8 @@ MonoBehaviour:
   roomNameText: 
   roomNameInputField: {fileID: 583427483}
   roomNameInputIsFocused: 0
-  content: {fileID: 0}
-  buttonPrefab: {fileID: 0}
+  content: {fileID: 1337967901}
+  buttonPrefab: {fileID: 150240, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
   myButton: {fileID: 0}
 --- !u!1 &230904439
 GameObject:
@@ -4771,6 +4771,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 164837962}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -9918,19 +9929,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMin.x
@@ -9938,7 +9949,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMax.x
@@ -9946,7 +9957,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_Pivot.x
@@ -10210,7 +10221,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 147, y: 7400}
+  m_AnchoredPosition: {x: 175, y: 8400}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1337967903
