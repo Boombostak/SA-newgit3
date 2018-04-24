@@ -9976,30 +9976,6 @@ Prefab:
       propertyPath: m_Name
       value: RoomButton
       objectReference: {fileID: 0}
-    - target: {fileID: 150240, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -14.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418970, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22443020, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 22432040, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
   m_IsPrefabParent: 0

@@ -57,7 +57,10 @@ public class NetworkManager : MonoBehaviour {
 
 	public void SelectButton(){
 		selectedRoomButton = EventSystem.current.currentSelectedGameObject;
-		selectedRoomButton.transform.GetChild (0).gameObject.SetActive(true);
+		if (selectedRoomButton.name=="RoomButton") {
+			selectedRoomButton.transform.GetChild (0).gameObject.SetActive(true);
+		}
+
 	}
 
 	public void CreateRoom(){
@@ -91,8 +94,8 @@ public class NetworkManager : MonoBehaviour {
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList()) {
 			rooms.Add (room.ToStringFull());
 			myButton = Instantiate (buttonPrefab);
-			myButton.transform.GetChild (1).GetComponent<Text> ().text = room.name;
-			myButton.transform.GetChild (2).GetComponent<Text> ().text = "Players:" +room.playerCount.ToString();
+			//myButton.transform.GetChild (1).GetComponent<Text> ().text = room.name;
+			//myButton.transform.GetChild (2).GetComponent<Text> ().text = "Players:" +room.playerCount.ToString();
 			myButton.transform.parent = content.transform;
 		}
 
