@@ -55,13 +55,13 @@ public class NetworkManager : MonoBehaviour {
         Debug.Log("joined room");
     }
 
-	public void SelectButton(){
+	/*public void SelectButton(){
 		selectedRoomButton = EventSystem.current.currentSelectedGameObject;
 		if (selectedRoomButton.name=="RoomButton") {
 			selectedRoomButton.transform.GetChild (0).gameObject.SetActive(true);
 		}
 
-	}
+	}*/
 
 	public void CreateRoom(){
 			roomNameText = roomNameInputField.text;
@@ -73,9 +73,10 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log ("attempted to instatiate lobby");
 	}
 
-	public void JoinRoom(){
+	public void JoinRoom(string name){
+		selectedRoomButton = EventSystem.current.currentSelectedGameObject;
 		Debug.Log ("attempted to join room");
-		PhotonNetwork.JoinRoom (null);
+		PhotonNetwork.JoinRoom (selectedRoomButton.transform.GetChild (1).GetComponent<Text> ().text);
 	}
 
 	public void RefreshRooms(){
@@ -94,13 +95,14 @@ public class NetworkManager : MonoBehaviour {
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList()) {
 			rooms.Add (room.ToStringFull());
 			myButton = Instantiate (buttonPrefab);
-			//myButton.transform.GetChild (1).GetComponent<Text> ().text = room.name;
-			//myButton.transform.GetChild (2).GetComponent<Text> ().text = "Players:" +room.playerCount.ToString();
+			myButton.transform.GetChild (1).GetComponent<Text> ().text = room.name;
+			myButton.transform.GetChild (2).GetComponent<Text> ().text = "Players:" +room.playerCount.ToString();
 			myButton.transform.parent = content.transform;
 		}
 
 		foreach (Transform child in content.transform) {
-			child.GetComponent<Button>().onClick.AddListener (SelectButton);
+			//child.GetComponent<Button>().onClick.AddListener()
+				//);
 		}
 			for (int i = 0; i < rooms.Count; i++) {
 			go = new GameObject();

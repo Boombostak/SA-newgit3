@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11497804}
   - 114: {fileID: 11485470}
   - 114: {fileID: 11466542}
+  - 114: {fileID: 11451322}
   m_Layer: 5
   m_Name: RoomMenuButton
   m_TagString: Untagged
@@ -70,6 +71,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &11451322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404ece25a321b5640a721d68ddcc9b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nwm: {fileID: 0}
+  lobbyCanvas: {fileID: 0}
 --- !u!114 &11466542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,9 +201,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SelectButton
-        m_Mode: 1
+      - m_Target: {fileID: 11500000, guid: ebfdcfadcdca8e147bffe731e2892733, type: 3}
+        m_MethodName: 
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

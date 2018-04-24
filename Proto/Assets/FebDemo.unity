@@ -1919,7 +1919,7 @@ MonoBehaviour:
   roomNameInputField: {fileID: 583427483}
   roomNameInputIsFocused: 0
   content: {fileID: 1337967901}
-  buttonPrefab: {fileID: 150240, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
+  buttonPrefab: {fileID: 142708, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
   myButton: {fileID: 0}
   selectedRoomButton: {fileID: 0}
 --- !u!1 &230904439
@@ -9930,19 +9930,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 190
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 360
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMin.x
@@ -9950,7 +9950,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMax.x
@@ -9958,7 +9958,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22401246, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_Pivot.x
@@ -9975,6 +9975,10 @@ Prefab:
     - target: {fileID: 142708, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
       propertyPath: m_Name
       value: RoomButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485470, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: JoinRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da443b6c5f281ed49bd01f5b5baba880, type: 2}
