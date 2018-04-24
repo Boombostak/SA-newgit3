@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using ExitGames;
+using UnityEngine.EventSystems;
 
 public class NetworkManager : MonoBehaviour {
 
@@ -27,6 +28,7 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject content;
 	public GameObject buttonPrefab;
 	public GameObject myButton;
+	public GameObject selectedRoomButton;
 	/*public struct room
 	{
 		public string name;
@@ -52,6 +54,11 @@ public class NetworkManager : MonoBehaviour {
         //PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
         Debug.Log("joined room");
     }
+
+	public void SelectButton(){
+		selectedRoomButton = EventSystem.current.currentSelectedGameObject;
+		selectedRoomButton.transform.GetChild (0).gameObject.SetActive(true);
+	}
 
 	public void CreateRoom(){
 			roomNameText = roomNameInputField.text;
@@ -84,7 +91,13 @@ public class NetworkManager : MonoBehaviour {
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList()) {
 			rooms.Add (room.ToStringFull());
 			myButton = Instantiate (buttonPrefab);
+			myButton.transform.GetChild (1).GetComponent<Text> ().text = room.name;
+			myButton.transform.GetChild (2).GetComponent<Text> ().text = "Players:" +room.playerCount.ToString();
 			myButton.transform.parent = content.transform;
+		}
+
+		foreach (Transform child in content.transform) {
+			child.GetComponent<Button>().onClick.AddListener (SelectButton);
 		}
 			for (int i = 0; i < rooms.Count; i++) {
 			go = new GameObject();
@@ -100,7 +113,6 @@ public class NetworkManager : MonoBehaviour {
     void OnPhotonRandomJoinFailed()
     {
         Debug.Log("Can't join room!");
-		PhotonNetwork.CreateRoom ("room1");//, true, true, 10);
     }
 
     void OnJoinedRoom()
