@@ -20,6 +20,10 @@ public class NetworkManager : MonoBehaviour {
 	public List<GameObject> roomsGOs;
 	public GameObject go;
 
+	public GameObject content;
+	public GameObject roomButtonPrefab;
+	public GameObject myRoomButton;
+
 	public string roomNameText;
 	public InputField roomNameInputField;
 	public bool roomNameInputIsFocused;
@@ -65,10 +69,16 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	public void RefreshRooms(){
+		//clean up room buttons
+		foreach (Transform child in content.transform) {
+			GameObject.Destroy (child.gameObject);
+
 		if (PhotonNetwork.insideLobby==true) {
 			Debug.Log ("you are in the lobby");
 		}
 		Debug.Log ("refreshing room list");
+
+		//refresh room list
 		rooms = new List<string>();
 		roomsGOs = new List<GameObject> ();
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList()) {
@@ -78,6 +88,11 @@ public class NetworkManager : MonoBehaviour {
 			go = new GameObject();
 			go.name = rooms [i];
 			roomsGOs.Add (go);
+			}
+			//build new room buttons
+			myRoomButton = Instantiate (roomButtonPrefab);
+			myRoomButton.transform.parent = content.transform;
+
 		}
 		foreach (RoomInfo room in PhotonNetwork.GetRoomList()){
 			Debug.Log(room.name);
