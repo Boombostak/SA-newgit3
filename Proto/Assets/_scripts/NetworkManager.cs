@@ -29,6 +29,8 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject buttonPrefab;
 	public GameObject myButton;
 	public GameObject selectedRoomButton;
+
+	public bool playingOffline;
 	/*public struct room
 	{
 		public string name;
@@ -43,34 +45,22 @@ public class NetworkManager : MonoBehaviour {
         PhotonNetwork.logLevel = PhotonLogLevel.Full;
         PhotonNetwork.ConnectUsingSettings("0.1");
         connectionText = canvas.GetComponentInChildren<Text>();
+		playingOffline = false;
     }
 
 	void OnJoinedLobby() //add lobby system here.
     {
-		InstantiateLobbyUI ();
 		RefreshRooms ();
-		//CreateRoom ();
 		RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 };
-        //PhotonNetwork.JoinOrCreateRoom("room1", ro, TypedLobby.Default);
         Debug.Log("joined room");
     }
 
-	/*public void SelectButton(){
-		selectedRoomButton = EventSystem.current.currentSelectedGameObject;
-		if (selectedRoomButton.name=="RoomButton") {
-			selectedRoomButton.transform.GetChild (0).gameObject.SetActive(true);
-		}
 
-	}*/
 
 	public void CreateRoom(){
 			roomNameText = roomNameInputField.text;
 			Debug.Log ("attempted to create room");
 			PhotonNetwork.CreateRoom (roomNameText);
-	}
-
-	public void InstantiateLobbyUI(){
-		Debug.Log ("attempted to instatiate lobby");
 	}
 
 	public void JoinRoom(string name){
@@ -120,6 +110,15 @@ public class NetworkManager : MonoBehaviour {
         Debug.Log("Can't join room!");
     }
 
+	public void PlayOffline()
+	{
+		playingOffline = true;
+		PhotonNetwork.LeaveRoom ();
+		PhotonNetwork.Disconnect ();
+		PhotonNetwork.offlineMode=true;
+		PhotonNetwork.CreateRoom("offlineRoom");
+	}
+
     void OnJoinedRoom()
     {
 		PhotonNetwork.Instantiate("player", spawnpoints[playerCount].transform.position, spawnpoints[playerCount].transform.rotation, 0);
@@ -137,14 +136,24 @@ public class NetworkManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		if (connectionCountDown>=0) {
+		if (connectionCountDown>=0 && !playingOffline) {
 			connectionCountDown -= Time.deltaTime;	
 		}
+
 		connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
-		if (PhotonNetwork.connected == false && connectionCountDown<=0) {
+
+		if (PhotonNetwork.connected == false && connectionCountDown<=0 && !playingOffline) 
+		{
 			PhotonNetwork.offlineMode = true;
-			PhotonNetwork.CreateRoom("some name");
+			PlayOffline();
 			Debug.Log ("Failed to connect, running offline.");
 		}
     }
+
+	public void CheckForDropout()
+	{
+		if (true) {
+			
+		}
+	}
 }
