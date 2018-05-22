@@ -54,6 +54,7 @@ GameObject:
   - 54: {fileID: 5417670}
   - 114: {fileID: 11469434}
   - 114: {fileID: 11423296}
+  - 114: {fileID: 11448168}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -174,7 +175,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 514.8961, y: -21, z: -28.996933}
+  m_LocalPosition: {x: 538.0785, y: -21, z: -23.78106}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467716}
@@ -557,6 +558,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8388d46a30cd6d4478d94e34d3c51fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11448168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111676}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4e04dd34c28f04fbf19bba7a8e6ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  c: {fileID: 0}
+  pv: {fileID: 11496720}
+  audioSource: {fileID: 8265268}
 --- !u!114 &11448424
 MonoBehaviour:
   m_ObjectHideFlags: 1

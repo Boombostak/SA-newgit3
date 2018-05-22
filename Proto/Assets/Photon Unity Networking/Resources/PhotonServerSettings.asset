@@ -40,4 +40,5 @@ MonoBehaviour:
   - RequestForPickupItems
   - TaggedPlayer
   - SyncTime
+  - Rpc_Send
   DisableAutoOpenWizard: 1

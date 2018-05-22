@@ -60,7 +60,7 @@ public class PlayerInput : MonoBehaviour {
 		}
 
 
-		if (Input.GetButtonDown ("Jump")) {
+		/*if (Input.GetButtonDown ("Jump")) {
 			micclip = Microphone.Start (MicTest.device, false, 10, 11025);
 		}
 
@@ -68,7 +68,7 @@ public class PlayerInput : MonoBehaviour {
 			Microphone.End (MicTest.device);
 			source.clip = micclip;
 			source.Play ();
-		}
+		}*/
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Application.Quit ();

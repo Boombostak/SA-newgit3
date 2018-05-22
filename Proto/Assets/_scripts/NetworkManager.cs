@@ -43,7 +43,7 @@ public class NetworkManager : MonoBehaviour {
     void Start()
     {
         PhotonNetwork.logLevel = PhotonLogLevel.Full;
-        PhotonNetwork.ConnectUsingSettings("0.1");
+        PhotonNetwork.ConnectUsingSettings("may21");
         connectionText = canvas.GetComponentInChildren<Text>();
 		playingOffline = false;
     }
