@@ -37,7 +37,8 @@ public class MicInput : Photon.MonoBehaviour{
 				if (Input.GetButton ("Jump"))
 				{
 					ReciveData(ba, c.channels);
-					Rpc_Send(ba, c.channels);
+					//Rpc_Send(ba, c.channels);
+					photonView.RPC("Rpc_Send",PhotonTargets.All,ba,c.channels);
 				}
 			}
 			lastSample = pos;

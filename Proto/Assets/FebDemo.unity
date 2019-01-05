@@ -3045,11 +3045,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11481350, guid: a7c7a490159863c4385443016cb1bde4, type: 2}
       propertyPath: viewIdField
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11481350, guid: a7c7a490159863c4385443016cb1bde4, type: 2}
       propertyPath: instantiationId
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11465462, guid: a7c7a490159863c4385443016cb1bde4, type: 2}
       propertyPath: Cycle.Hour
