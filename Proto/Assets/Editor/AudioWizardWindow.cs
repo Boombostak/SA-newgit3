@@ -42,7 +42,8 @@ public class AudioWizardWindow : EditorWindow {
 		EditorGUILayout.EndToggleGroup();
 
 		if (GUILayout.Button ("Add to scene")) {
-			tempObj = (GameObject)Instantiate (tempObj, vec3, Quaternion.identity);
+			tempObj = new GameObject();
+			tempObj.transform.position = vec3;
 			tempObj.AddComponent<AudioSource> ();
 			tempObj.GetComponent<AudioSource> ().clip = audioClip;
 			tempObj.name = nickname;
