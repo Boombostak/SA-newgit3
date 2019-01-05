@@ -28,6 +28,7 @@ public class AudioWizardWindow : EditorWindow {
 		GizmoGo = new GameObject ();
 		GizmoGo.name = "AudioWizardGizmoGO";
 		Selection.activeGameObject = GizmoGo;
+		GizmoGo.AddComponent(typeof(SphereGizmo));
 	}
 
 		void OnGUI()
