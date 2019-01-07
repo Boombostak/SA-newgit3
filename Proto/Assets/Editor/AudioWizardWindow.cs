@@ -16,6 +16,8 @@ public class AudioWizardWindow : EditorWindow {
 	bool DateTimeEnabled;
 	bool SunAngleEnabled;
 	bool MoonAngleEnabled;
+	bool isHijri;
+	public string calendarType = "Gregorian";
 	public string targetDateTimeString;
 	public DateTime targetDateTime;
 	public float sunY;
@@ -56,8 +58,18 @@ public class AudioWizardWindow : EditorWindow {
 		targetDateTimeString = EditorGUILayout.TextField ("Target Date/Time in format mm/dd/yyyy hh:mm:ss (24 hour clock)",targetDateTimeString);
 		if (DateTime.TryParse (targetDateTimeString, out dateResult)) {
 			targetDateTime = dateResult;
+		} 
+		else {
+			Debug.Log ("Invalid DateTime!");
 		}
-
+		if (isHijri == false) {
+			calendarType = "Gregorian";
+		} 
+		else {
+			calendarType = "Hijri";
+		}
+		isHijri = EditorGUILayout.Toggle ("Hijri Calendar?", isHijri);
+		EditorGUILayout.SelectableLabel ("Calendar type... " + calendarType.ToString());
 		EditorGUILayout.EndToggleGroup();
 		Debug.Log(targetDateTime.ToString());
 		SunAngleEnabled = EditorGUILayout.BeginToggleGroup("Trigger By Sun Angle", SunAngleEnabled);

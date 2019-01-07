@@ -15,6 +15,7 @@ public class GenericAudioBehaviour : MonoBehaviour {
 	public string gregorianDateTimeString;
 	public DateTime hijriDateTime;
 	public string hijriDateTimeString;
+	public bool useHijri;
 	//public ReverNodeZoneDetectorForListener RNZDFL;
 	//public AudioLowPassFilter filter;
 	//public AudioSource[] sourcesToMute;
