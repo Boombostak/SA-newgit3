@@ -115,14 +115,34 @@ public class AudioWizardWindow : EditorWindow {
 	void SetRepeatType(repeatOptions op){
 		switch (op) {
 		case repeatOptions.Daily:
+			repeatDaily = true;
+			repeatWeekly = false;
+			repeatMonthly = false;
+			repeatYearly = false;
 			break;
 		case repeatOptions.Weekly:
+			repeatDaily = false;
+			repeatWeekly = true;
+			repeatMonthly = false;
+			repeatYearly = false;
 			break;
 		case repeatOptions.Monthly:
+			repeatDaily = false;
+			repeatWeekly = false;
+			repeatMonthly = true;
+			repeatYearly = false;
 			break;
 		case repeatOptions.Yearly:
+			repeatDaily = false;
+			repeatWeekly = false;
+			repeatMonthly = false;
+			repeatYearly = true;
 			break;
 		case repeatOptions.NoRepeat:
+			repeatDaily = false;
+			repeatWeekly = false;
+			repeatMonthly = false;
+			repeatYearly = false;
 			break;
 		default:
 			Debug.Log ("Unrecognized option in SetRepeatType");
