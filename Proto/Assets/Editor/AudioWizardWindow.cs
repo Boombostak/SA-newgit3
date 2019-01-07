@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEditor;
 using UnityEngine.Audio;
+using System.Collections.Generic;
+using System;
 
 public class AudioWizardWindow : EditorWindow {
 
@@ -14,6 +16,10 @@ public class AudioWizardWindow : EditorWindow {
 	bool DateTimeEnabled;
 	bool SunAngleEnabled;
 	bool MoonAngleEnabled;
+	public string targetDateTimeString;
+	public DateTime targetDateTime;
+	public float sunY;
+	public float moonY;
 
 		// Add menu named "My Window" to the Window menu
 		[MenuItem("Window/AudioWizardWindow")]
@@ -29,20 +35,31 @@ public class AudioWizardWindow : EditorWindow {
 		GizmoGo.name = "AudioWizardGizmoGO";
 		Selection.activeGameObject = GizmoGo;
 		GizmoGo.AddComponent(typeof(SphereGizmo));
+		editorCamera = SceneView.lastActiveSceneView.camera;
+		GizmoGo.transform.position = (editorCamera.transform.position + (editorCamera.transform.forward*3));
+
 	}
 
 		void OnGUI()
 		{
+		DateTime dateResult;
+
+		EditorGUIUtility.labelWidth = 500;
 		GUILayout.Label("Base Settings", EditorStyles.boldLabel);
 		nickname = EditorGUILayout.TextField("Object Name", nickname);
 		audioClip = (AudioClip)EditorGUILayout.ObjectField("Clip to trigger",audioClip,typeof(AudioClip),true);
-		editorCamera = SceneView.lastActiveSceneView.camera;
 		GizmoGo.transform.position = (Vector3)EditorGUILayout.Vector3Field ("Placement Target",GizmoGo.transform.position);
 
 
-		DateTimeEnabled = EditorGUILayout.BeginToggleGroup("Trigger By DateTime", DateTimeEnabled);
-		EditorGUILayout.EndToggleGroup();
 
+		DateTimeEnabled = EditorGUILayout.BeginToggleGroup("Trigger By DateTime", DateTimeEnabled);
+		targetDateTimeString = EditorGUILayout.TextField ("Target Date/Time in format mm/dd/yyyy hh:mm:ss (24 hour clock)",targetDateTimeString);
+		if (DateTime.TryParse (targetDateTimeString, out dateResult)) {
+			targetDateTime = dateResult;
+		}
+
+		EditorGUILayout.EndToggleGroup();
+		Debug.Log(targetDateTime.ToString());
 		SunAngleEnabled = EditorGUILayout.BeginToggleGroup("Trigger By Sun Angle", SunAngleEnabled);
 		EditorGUILayout.EndToggleGroup();
 

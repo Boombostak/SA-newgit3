@@ -15,6 +15,7 @@ public class SimpleCalendar : MonoBehaviour {
 	public HijriCalendar hijriCal;
 	public CultureInfo turkey = CultureInfo.CreateSpecificCulture("tr-TR");
 	public CultureInfo canadianEnglish = CultureInfo.CreateSpecificCulture("en-CA");
+	public GenericAudioBehaviour gAB;
 
 
 	void Start()
@@ -27,6 +28,8 @@ public class SimpleCalendar : MonoBehaviour {
 		Thread.CurrentThread.CurrentCulture = canadianEnglish;
 		dotw = Sky.Cycle.DateTime.ToString ();
 		textGregorian.text = "Gregorian" + dotw;
+		gAB.gregorianDateTime = Sky.Cycle.DateTime;
+		gAB.gregorianDateTimeString = Sky.Cycle.DateTime.ToString ();
 	}
 
 	public void ConvertToHijri()
@@ -36,6 +39,8 @@ public class SimpleCalendar : MonoBehaviour {
 		turkey.DateTimeFormat.Calendar = hijriCal;
 		dotw = Sky.Cycle.DateTime.ToString ();
 		textHijri.text = "Hijri"+dotw;
+		gAB.hijriDateTime = Sky.Cycle.DateTime;
+		gAB.hijriDateTimeString = Sky.Cycle.DateTime.ToString ();
 	}
 
 	void Update ()
