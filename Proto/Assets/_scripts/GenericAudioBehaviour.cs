@@ -16,6 +16,8 @@ public class GenericAudioBehaviour : MonoBehaviour {
 	public DateTime hijriDateTime;
 	public string hijriDateTimeString;
 	public bool useHijri;
+	public DateTime targetDateTime;
+	public bool clipHasPlayed;
 	//public ReverNodeZoneDetectorForListener RNZDFL;
 	//public AudioLowPassFilter filter;
 	//public AudioSource[] sourcesToMute;

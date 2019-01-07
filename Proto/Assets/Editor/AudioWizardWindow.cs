@@ -5,6 +5,15 @@ using UnityEngine.Audio;
 using System.Collections.Generic;
 using System;
 
+public enum repeatOptions
+{
+	Daily=0,
+	Weekly=1,
+	Monthly=2,
+	Yearly=3,
+	NoRepeat=4
+}
+
 public class AudioWizardWindow : EditorWindow {
 
 	public GameObject GizmoGo = null;
@@ -22,6 +31,12 @@ public class AudioWizardWindow : EditorWindow {
 	public DateTime targetDateTime;
 	public float sunY;
 	public float moonY;
+	public bool repeatDaily;
+	public bool repeatWeekly;
+	public bool repeatMonthly;
+	public bool repeatYearly;
+	public repeatOptions op;
+
 
 		// Add menu named "My Window" to the Window menu
 		[MenuItem("Window/AudioWizardWindow")]
@@ -70,6 +85,7 @@ public class AudioWizardWindow : EditorWindow {
 		}
 		isHijri = EditorGUILayout.Toggle ("Hijri Calendar?", isHijri);
 		EditorGUILayout.SelectableLabel ("Calendar type... " + calendarType.ToString());
+		op = (repeatOptions)EditorGUILayout.EnumPopup ("Repeat type", op);
 		EditorGUILayout.EndToggleGroup();
 		Debug.Log(targetDateTime.ToString());
 		SunAngleEnabled = EditorGUILayout.BeginToggleGroup("Trigger By Sun Angle", SunAngleEnabled);
@@ -85,7 +101,7 @@ public class AudioWizardWindow : EditorWindow {
 			tempObj.GetComponent<AudioSource> ().clip = audioClip;
 			tempObj.name = nickname;
 		}
-		}
+	}
 
 	void OnDrawGizmos(){
 		Gizmos.color = Color.white;
@@ -95,4 +111,22 @@ public class AudioWizardWindow : EditorWindow {
 	void OnDestroy(){
 		GameObject.DestroyImmediate (GizmoGo);
 	}
+
+	void SetRepeatType(repeatOptions op){
+		switch (op) {
+		case repeatOptions.Daily:
+			break;
+		case repeatOptions.Weekly:
+			break;
+		case repeatOptions.Monthly:
+			break;
+		case repeatOptions.Yearly:
+			break;
+		case repeatOptions.NoRepeat:
+			break;
+		default:
+			Debug.Log ("Unrecognized option in SetRepeatType");
+			break;
+		}
 	}
+}
